@@ -1,0 +1,55 @@
+{
+  "providers": {
+    "bmf-gemini": {
+      "name": "Bosch Model Farm (Gemini)",
+      "baseUrl": "https://aoai-farm.bosch-temp.com/api/google/v1/endpoints/gemini-3.5-flash/openapi",
+      "api": "openai-completions",
+      "apiKey": "$BMF_API_KEY",
+      "models": [
+        {
+          "id": "google/gemini-3.5-flash",
+          "name": "Gemini 3.5 Flash (BMF)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 1000000,
+          "maxTokens": 65536
+        }
+      ]
+    },
+    "bmf-gpt-55": {
+      "name": "Bosch Model Farm (GPT-5.5)",
+      "baseUrl": "https://aoai-farm.bosch-temp.com/api/openai/deployments/gpt-5.5-2026-04-24?api-version=2025-04-01-preview",
+      "api": "openai-completions",
+      "apiKey": "$BMF_API_KEY",
+      "models": [
+        {
+          "id": "gpt-5.5-2026-04-24",
+          "name": "GPT-5.5 (BMF)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 272000,
+          "maxTokens": 128000
+        }
+      ]
+    },
+    "bmf-gpt-54": {
+      "name": "Bosch Model Farm (GPT-5.4)",
+      "baseUrl": "https://aoai-farm.bosch-temp.com/api/openai/deployments/gpt-5.4-2026-03-05?api-version=2025-04-01-preview",
+      "api": "openai-completions",
+      "apiKey": "$BMF_API_KEY",
+      "models": [
+        {
+          "id": "gpt-5.4-2026-03-05",
+          "name": "GPT-5.4 (BMF)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 272000,
+          "maxTokens": 128000
+        }
+      ]
+    }
+  }
+}
