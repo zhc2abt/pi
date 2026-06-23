@@ -64,11 +64,18 @@ the body. The extension reuses pi's `streamAnthropic` and (a) rewrites the Anthr
 `/v1/messages` call to `:streamRawPredict` with Bearer auth, and (b) injects
 `anthropic_version` (and strips the body-level `model` field, which rawPredict rejects).
 
-`streamAnthropic` / `streamOpenAICompletions` are not exported from the
-`@earendil-works/pi-ai` main entry, and jiti cannot resolve the `@earendil-works/pi-ai/<subpath>`
-subpath through a static import. The extension loads them at runtime via the module-scoped
-`require` that jiti provides (resolving pi-ai's main, then loading the provider file by
-absolute path), so a normal `pi` install needs no extra dependencies.
+The provider stream functions are not exported from the `@earendil-works/pi-ai` main
+entry, and jiti cannot resolve the `@earendil-works/pi-ai/<subpath>` subpath through a
+static import. The extension loads them at runtime via the module-scoped `require` that
+jiti provides, trying both layouts so it works across pi versions:
+
+- **<= 0.79.9**: the functions are named `streamAnthropic` / `streamOpenAICompletions` and
+  live in `providers/*.js`.
+- **0.79.10+**: they are named `stream` / `streamSimple` and live in `api/*.js`.
+
+The loader resolves the subpath (or, as a fallback, pi-ai's main and then the provider
+file by absolute path) and picks whichever export name exists, so a normal `pi` install
+needs no extra dependencies.
 
 Each `fetch` interception is scoped to a specific BMF URL pattern and restored when the stream
 finishes, so providers never interfere with each other.
